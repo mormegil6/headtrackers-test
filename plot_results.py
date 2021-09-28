@@ -8,12 +8,12 @@ np.set_printoptions(precision=5, suppress=True)
 
 if __name__ == '__main__':
 
-    ########################
-    ### 01. latency test ###
-    ########################
+    ##########################
+    ### 01. rotations test ###
+    ##########################
 
     # read Reaper file for recorded automation tracks
-    f = open('.\\headtrackers_test_python2.rpp', 'r')
+    f = open('.\\HeadtrackersTest-rotation.rpp', 'r')
     rf = f.read()
     f.close()
     r = rpp.loads(rf)
@@ -98,7 +98,7 @@ if __name__ == '__main__':
     ######################
 
     # read Reaper file for recorded automation tracks
-    f = open('.\\headtrackers_test_python3.rpp', 'r')
+    f = open('.\\HeadtrackersTest-drift.rpp', 'r')
     rf = f.read()
     f.close()
     r = rpp.loads(rf)
