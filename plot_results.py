@@ -56,6 +56,9 @@ if __name__ == '__main__':
     
     # plot results
     fg, ax = plt.subplots()
+    titleStr = 'Headtrackers test - latency\nRotating headtrackers, saving IEM SceneRotator output'
+    fg.canvas.manager.set_window_title(titleStr)
+    fg.suptitle(titleStr)
     legendStr = ['Supperware Y', 'Supperware P', 'Supperware R', 'IEM MrHeadTracker Y', 'IEM MrHeadTracker P',
                  'IEM MrHeadTracker R', 'WavesNX Y', 'WavesNX P', 'WavesNX R']
     # results for Supperware
@@ -72,12 +75,12 @@ if __name__ == '__main__':
     lineWvnx_R, = ax.plot(wvnx_R[:, 0], wvnx_R[:, 1], '-', color='royalblue', label=legendStr[8])
 
     # remove lines, so the plot shows only Yaw coordinates - comment to plot Pitch and Roll
-    lineSupp_P.remove()
-    lineSupp_R.remove()
-    lineMrht_P.remove()
-    lineMrht_R.remove()
-    lineWvnx_P.remove()
-    lineWvnx_R.remove()
+    # lineSupp_P.remove()
+    # lineSupp_R.remove()
+    # lineMrht_P.remove()
+    # lineMrht_R.remove()
+    # lineWvnx_P.remove()
+    # lineWvnx_R.remove()
 
     ax.legend()
 
@@ -85,10 +88,20 @@ if __name__ == '__main__':
     ax.yaxis.set_major_locator(MultipleLocator(30))
     ax.yaxis.set_minor_locator(MultipleLocator(10))
     ax.tick_params(axis='y', which='minor', bottom=False)
-    ax.grid(which='major', linestyle='--')
-    ax.grid(which='minor', linestyle=':')
+    ax.grid(which='major', linestyle='--', axis='both')
+    ax.grid(which='minor', linestyle=':', axis='y')
     ax.set_xlabel('time [s]')
     ax.set_ylabel('angle [deg]')
+
+    extraticks = [14, 26, 38, 48, 56, 62]
+    ax2 = ax.twiny()
+    ax2.set_xlim(ax.get_xlim())
+    ax2.set_xticks(extraticks, minor=True)
+    ax2.tick_params(axis='x', length=0, which='minor')
+    ax2.tick_params(axis='x', which='major', bottom=False, top=False, labelbottom=False, labeltop=False)
+    ax2.set_xticklabels(["rotating 360° clockwise\nand back on yaw axis", "rotating 360° clockwise\nand back on yaw axis",
+                        "rotating 360° clockwise\nand back on yaw axis", "90° left/right\nyaw axis",
+                         "90° down/up\npitch axis", "90° left/right\nroll axis"], minor=True, color='b', rotation=0)
 
     plt.show()
 
@@ -141,6 +154,9 @@ if __name__ == '__main__':
 
     # plot results
     fg, ax = plt.subplots()
+    titleStr = 'Headtrackers test - drift\nLeaving headtrackers on a dummy head for 10 mins, saving IEM SceneRotator output'
+    fg.canvas.manager.set_window_title(titleStr)
+    fg.suptitle(titleStr)
     legendStr = ['Supperware Y', 'Supperware P', 'Supperware R', 'IEM MrHeadTracker Y', 'IEM MrHeadTracker P',
                  'IEM MrHeadTracker R', 'WavesNX Y', 'WavesNX P', 'WavesNX R']
     # results for Supperware
@@ -157,21 +173,21 @@ if __name__ == '__main__':
     lineWvnx_R, = ax.plot(wvnx_R[:, 0], wvnx_R[:, 1], '-', color='royalblue', label=legendStr[8])
 
     # remove lines, so the plot shows only Yaw coordinates - comment to plot Pitch and Roll
-    lineSupp_P.remove()
-    lineSupp_R.remove()
-    lineMrht_P.remove()
-    lineMrht_R.remove()
-    lineWvnx_P.remove()
-    lineWvnx_R.remove()
+    # lineSupp_P.remove()
+    # lineSupp_R.remove()
+    # lineMrht_P.remove()
+    # lineMrht_R.remove()
+    # lineWvnx_P.remove()
+    # lineWvnx_R.remove()
 
     ax.legend()
 
-    ax.set_ylim([-190, 190])
-    ax.yaxis.set_major_locator(MultipleLocator(30))
-    ax.yaxis.set_minor_locator(MultipleLocator(10))
+    ax.set_ylim([-10, 10])
+    ax.yaxis.set_major_locator(MultipleLocator(2))
+    ax.yaxis.set_minor_locator(MultipleLocator(0.5))
     ax.tick_params(axis='y', which='minor', bottom=False)
-    ax.grid(which='major', linestyle='--')
-    ax.grid(which='minor', linestyle=':')
+    ax.grid(which='major', linestyle='--', axis='both')
+    ax.grid(which='minor', linestyle=':', axis='y')
     ax.set_xlabel('time [s]')
     ax.set_ylabel('angle [deg]')
 
